@@ -7,7 +7,5 @@
 |[DAMO-StreamNet-L](./cfgs/streamnet_l.py)    |600×960  |1x      |37.8     |59.1 | 38.6 | [link](./models/coco_pretrained_models/yolox_l_drfpn.pth) | [link](./models/checkpoints/streamnet_l.pth) |
 |[DAMO-StreamNet-L](./cfgs/streamnet_l_1200x1920.py)   |1200×1920  |1x      | **43.3** | **66.1** | **44.6** | [link](./models/coco_pretrained_models/yolox_l_drfpn.pth) | [link](./models/checkpoints/streamnet_l_1200x1920.pth) |
 
-Please find the teacher model [here](./models/teacher_models/l_s50_still_dfp_flip_ep8_4_gpus_bs_8/best_ckpt.pth).
-
 
 
