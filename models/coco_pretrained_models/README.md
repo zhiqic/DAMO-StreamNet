@@ -1,5 +1,3 @@
-# DAMO-StreamNet
-
 ## Model Zoo
 
 |Model |size |velocity | sAP<br>0.5:0.95 | sAP50 |sAP75| coco pretrained models | weights |
