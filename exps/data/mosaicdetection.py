@@ -1,0 +1,89 @@
+#!/usr/bin/env python3
+# -*- coding:utf-8 -*-
+# Copyright (c) Megvii, Inc. and its affiliates.
+# Copyright (c) DAMO Academy, Alibaba Group and its affiliates.
+
+import cv2
+import numpy as np
+
+from yolox.utils import adjust_box_anns
+
+
+def get_mosaic_coordinate(mosaic_image, mosaic_index, xc, yc, w, h, input_h, input_w):
+    # TODO update doc
+    # index0 to top left part of image
+    if mosaic_index == 0:
+        x1, y1, x2, y2 = max(xc - w, 0), max(yc - h, 0), xc, yc
+        small_coord = w - (x2 - x1), h - (y2 - y1), w, h
+    # index1 to top right part of image
+    elif mosaic_index == 1:
+        x1, y1, x2, y2 = xc, max(yc - h, 0), min(xc + w, input_w * 2), yc
+        small_coord = 0, h - (y2 - y1), min(w, x2 - x1), h
+    # index2 to bottom left part of image
+    elif mosaic_index == 2:
+        x1, y1, x2, y2 = max(xc - w, 0), yc, xc, min(input_h * 2, yc + h)
+        small_coord = w - (x2 - x1), 0, w, min(y2 - y1, h)
+    # index2 to bottom right part of image
+    elif mosaic_index == 3:
+        x1, y1, x2, y2 = xc, yc, min(xc + w, input_w * 2), min(input_h * 2, yc + h)  # noqa
+        small_coord = 0, 0, min(w, x2 - x1), min(y2 - y1, h)
+    return (x1, y1, x2, y2), small_coord
+
+
+class MosaicDetection(Dataset):
+    """Detection dataset wrapper that performs mixup for normal dataset."""
+
+    def __init__(
+        self, dataset, img_size, mosaic=True, preproc=None,
+        degrees=10.0, translate=0.1, scale=(0.5, 1.5), mscale=(0.5, 1.5),
+        shear=2.0, perspective=0.0, enable_mixup=True, 
+        mosaic_prob=1.0, mixup_prob=1.0, *args
+    ):
+        """
+
+        Args:
+            dataset(Dataset) : Pytorch dataset object.
+            img_size (tuple):
+            mosaic (bool): enable mosaic augmentation or not.
+            preproc (func):
+            degrees (float):
+            translate (float):
+            scale (tuple):
+            mscale (tuple):
+            shear (float):
+            perspective (float):
+            enable_mixup (bool):
+            *args(tuple) : Additional arguments for mixup random sampler.
+        """
+        super().__init__(img_size, mosaic=mosaic)
+        self._dataset = dataset
+        self.preproc = preproc
+        self.degrees = degrees
+        self.translate = translate
+        self.scale = scale
+        self.shear = shear
+        self.perspective = perspective
+        self.mixup_scale = mscale
+        self.enable_mosaic = mosaic
+        self.enable_mixup = enable_mixup
+        self.mosaic_prob = mosaic_prob
+        self.mixup_prob = mixup_prob
+
+    def __len__(self):
+        return len(self._dataset)
+
+    @Dataset.mosaic_getitem
+    def __getitem__(self, idx):
+        if self.enable_mosaic and random.random() < self.mosaic_prob:
+            raise Exception("Not implemented.")
+        else:
+            self._dataset._input_dim = self.input_dim
+            if len(self._dataset.pull_item(idx)) == 5:
+                img, support_img, label, img_info, id_ = self._dataset.pull_item(idx)
+                img, label = self.preproc(img, label, self.input_dim)
+                support_img, _ = self.preproc(support_img, label, self.input_dim)
+                return np.concatenate((img, support_img), axis=0), label, img_info, id_
+            else:
+                img, label, img_info, id_ = self._dataset.pull_item(idx)
+                img, label = self.preproc(img, label, self.input_dim)
+                return img, label, img_info, id_
