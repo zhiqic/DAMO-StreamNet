@@ -33,7 +33,7 @@ class Exp(MyExp):
 
         self.exp_name = os.path.split(os.path.realpath(__file__))[1].split(".")[0]
 
-        self.output_dir = '/data/output/stream_yolo/longshort_new_archi'
+        self.output_dir = './data/output/stream_yolo/longshort_new_archi'
 
         self.short_cfg = dict(
                             frame_num=1,
@@ -124,7 +124,7 @@ class Exp(MyExp):
         )
 
         dataset = LONGSHORT_ARGOVERSEDataset(
-            data_dir='/data',
+            data_dir='./data',
             json_file=self.train_ann,
             name='train',
             img_size=self.input_size,
@@ -186,7 +186,7 @@ class Exp(MyExp):
         from exps.data.data_augment_flip import LongShortValTransform
 
         valdataset = LONGSHORT_ARGOVERSEDataset(
-            data_dir='/data',
+            data_dir='./data',
             json_file='val.json',
             name='val',
             img_size=self.test_size,
