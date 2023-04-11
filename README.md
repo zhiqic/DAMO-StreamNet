@@ -25,6 +25,31 @@ Please find the teacher model [here](https://drive.google.com/drive/folders/1I0R
 ### Installation
 You can refer to [StreamYOLO](https://github.com/yancie-yjr/StreamYOLO)/[LongShortNet](https://github.com/LiChenyang-Github/LongShortNet) to install the whole environments.
 
+#### Dataset Preparation
+
+Refer to [here](https://github.com/yancie-yjr/StreamYOLO#quick-start) to prepare the Argoverse-HD dataset. Please put the dataset into `./data` or create a symbolic links to the dataset in `./data`.
+
+#### Models Preparation
+
+Please download the models provided above into `./models` and organize them as:
+
+```
+./models
+├── checkpoints
+│   ├── streamnet_l_1200x1920.pth
+│   ├── streamnet_l.pth
+│   ├── streamnet_m.pth
+│   └── streamnet_s.pth
+├── coco_pretrained_models
+│   ├── yolox_l_drfpn.pth
+│   ├── yolox_m_drfpn.pth
+│   └── yolox_s_drfpn.pth
+└── teacher_models
+    └── l_s50_still_dfp_flip_ep8_4_gpus_bs_8
+        └── best_ckpt.pth
+
+```
+
 ### Train
 ```shell
 bash run_train.sh
