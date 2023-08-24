@@ -78,4 +78,15 @@ bash run_eval.sh
 Our work heavily relies on the foundations laid by [StreamYOLO](https://github.com/yancie-yjr/StreamYOLO) and [LongShortNet](https://github.com/LiChenyang-Github/LongShortNet). We extend our heartfelt gratitude to the authors for their groundbreaking contributions.
 
 
+## Copyright and Usage Restrictions
+
+This software and associated documentation files (the "Software") are provided for **academic research purposes only**. Redistribution and use in any form, with or without modification, are prohibited without the express written permission of the copyright holder.
+
+Any use of the Software should cite the appropriate academic publications. Commercial use or any activities other than academic research are strictly prohibited.
+
+By accessing, downloading, or using the Software, you agree to comply with the above terms.
+
+
+
+
 
