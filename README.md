@@ -1,11 +1,11 @@
 # DAMO-StreamNet: Optimizing Streaming Perception in Autonomous Driving
 
+Real-time perception, often referred to as streaming perception, plays a pivotal role in autonomous driving. Despite its significance, there's a noticeable gap in the research dedicated to this domain. DAMO-StreamNet is our attempt to bridge this gap. This framework amalgamates the latest advancements from the YOLO series with an in-depth exploration of spatial and temporal perception mechanisms, offering a state-of-the-art solution.
+
 <p align='center'>
   <img src='assets/framework.jpg' width='900'/>
 </p>
 
-
-Real-time perception, often referred to as streaming perception, plays a pivotal role in autonomous driving. Despite its significance, there's a noticeable gap in the research dedicated to this domain. DAMO-StreamNet is our attempt to bridge this gap. This framework amalgamates the latest advancements from the YOLO series with an in-depth exploration of spatial and temporal perception mechanisms, offering a state-of-the-art solution.
 
 ### Key Features:
 1. **Robust Neck Structure**: Incorporates deformable convolution, enhancing the receptive field and feature alignment capabilities.
