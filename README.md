@@ -1,12 +1,19 @@
-# DAMO-StreamNet
+# DAMO-StreamNet: Optimizing Streaming Perception in Autonomous Driving
 
-## DAMO-StreamNet: Optimizing Streaming Perception in Autonomous Driving
 <p align='center'>
   <img src='assets/framework.jpg' width='900'/>
 </p>
 
-Real-time perception, or streaming perception, is a crucial aspect of autonomous driving that has yet to be thoroughly explored in existing research. To address this gap, we present DAMO-StreamNet, an optimized framework that combines recent advances from the YOLO series with a comprehensive analysis of spatial and temporal perception mechanisms, delivering a cutting-edge solution. The key innovations of DAMO-StreamNet are: (1) A robust neck structure incorporating deformable convolution, enhancing the receptive field and feature alignment capabilities. (2) A dual-branch structure that integrates short-path semantic features and long-path temporal features, improving motion state prediction accuracy. (3) Logits-level distillation for efficient optimization, aligning the logits of teacher and student networks in semantic space. (4) A real-time forecasting mechanism that updates support frame features with the current frame, ensuring seamless streaming perception during inference.~Our experiments demonstrate that DAMO-StreamNet surpasses existing state-of-the-art methods, achieving 37.8\% (normal size (600, 960)) and 43.3\% (large size (1200, 1920)) sAP without using extra data. This work not only sets a new benchmark for real-time perception but also provides valuable insights for future research. Additionally, DAMO-StreamNet can be applied to various autonomous systems, such as drones and robots, paving the way for real-time perception.
 
+Real-time perception, often referred to as streaming perception, plays a pivotal role in autonomous driving. Despite its significance, there's a noticeable gap in the research dedicated to this domain. DAMO-StreamNet is our attempt to bridge this gap. This framework amalgamates the latest advancements from the YOLO series with an in-depth exploration of spatial and temporal perception mechanisms, offering a state-of-the-art solution.
+
+### Key Features:
+1. **Robust Neck Structure**: Incorporates deformable convolution, enhancing the receptive field and feature alignment capabilities.
+2. **Dual-branch Structure**: Seamlessly integrates short-path semantic features with long-path temporal features, bolstering motion state prediction accuracy.
+3. **Logits-level Distillation**: Efficiently optimizes by aligning the logits of teacher and student networks in the semantic space.
+4. **Real-time Forecasting Mechanism**: Continuously updates support frame features with the current frame, ensuring uninterrupted streaming perception during inference.
+
+The extensive results show that DAMO-StreamNet outperforms existing methods, achieving impressive sAP scores without relying on additional data. This model not only sets a new benchmark for real-time perception but also offers invaluable insights for subsequent research. Moreover, its applications extend beyond cars to other autonomous systems like drones and robots, heralding a new era of real-time perception.
 
 
 ## Model Zoo
@@ -23,15 +30,17 @@ Please find the teacher model [here](https://drive.google.com/drive/folders/1I0R
 ## Quick Start
 
 ### Installation
-You can refer to [StreamYOLO](https://github.com/yancie-yjr/StreamYOLO)/[LongShortNet](https://github.com/LiChenyang-Github/LongShortNet) to install the whole environments.
+
+For installation, follow the guidelines provided in [StreamYOLO](https://github.com/yancie-yjr/StreamYOLO) and [LongShortNet](https://github.com/LiChenyang-Github/LongShortNet).
 
 #### Dataset Preparation
 
-Refer to [here](https://github.com/yancie-yjr/StreamYOLO#quick-start) to prepare the Argoverse-HD dataset. Please put the dataset into `./data` or create a symbolic links to the dataset in `./data`.
+To set up the Argoverse-HD dataset, follow the instructions [here](https://github.com/yancie-yjr/StreamYOLO#quick-start). Ensure that you place the dataset in `./data` or create symbolic links to the dataset within `./data`.
 
 #### Models Preparation
 
-Please download the models provided above into `./models` and organize them as:
+Download the models from the links above and organize them in the `./models` directory as shown:
+
 
 ```
 ./models
@@ -51,17 +60,22 @@ Please download the models provided above into `./models` and organize them as:
 ```
 
 ### Train
+
+To initiate training, execute:
 ```shell
 bash run_train.sh
 ```
 
 ### Evaluation
+For model evaluation, run:
+
 ```shell
 bash run_eval.sh
 ```
 
 
 ## Acknowledgment
-Our implementation is mainly based on [StreamYOLO](https://github.com/yancie-yjr/StreamYOLO) and [LongShortNet](https://github.com/LiChenyang-Github/LongShortNet). We gratefully thank the authors for their wonderful works.
+Our work heavily relies on the foundations laid by [StreamYOLO](https://github.com/yancie-yjr/StreamYOLO) and [LongShortNet](https://github.com/LiChenyang-Github/LongShortNet). We extend our heartfelt gratitude to the authors for their groundbreaking contributions.
+
 
 
