@@ -17,6 +17,11 @@ DAMO-StreamNet is a novel streaming perception framework for real-time video obj
 
 - **Real-time Forecasting**: Continuously updates support frames for seamless streaming.
 
+
+For more details, please see our full [IJCAI 2023 paper](https://arxiv.org/pdf/2303.17144.pdf).
+
+
+
 ## Usage
 
 DAMO-StreamNet supports real-time detection of 8 classes relevant to autonomous driving:
