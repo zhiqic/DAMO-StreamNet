@@ -1,92 +1,108 @@
-# DAMO-StreamNet: Optimizing Streaming Perception in Autonomous Driving
+# DAMO-StreamNet: Optimizing Streaming Perception for Autonomous Driving
 
-Real-time perception, often referred to as streaming perception, plays a pivotal role in autonomous driving. Despite its significance, there's a noticeable gap in the research dedicated to this domain. DAMO-StreamNet is our attempt to bridge this gap. This framework amalgamates the latest advancements from the YOLO series with an in-depth exploration of spatial and temporal perception mechanisms, offering a state-of-the-art solution.
+DAMO-StreamNet is a novel streaming perception framework for real-time video object detection in autonomous driving scenarios. It builds upon state-of-the-art models like YOLO and LongShortNet to achieve optimized accuracy under strict latency constraints.
 
-<p align='center'>
-  <img src='assets/framework.jpg' width='900'/>
+<p align="center">
+<img width="600" src="https://github.com/zhiqic/DAMO-StreamNet/assets/65300431/c60358c6-80de-4366-8dfd-c07ecd4bdfbf">
 </p>
 
 
-### Key Features:
-1. **Robust Neck Structure**: Incorporates deformable convolution, enhancing the receptive field and feature alignment capabilities.
-2. **Dual-branch Structure**: Seamlessly integrates short-path semantic features with long-path temporal features, bolstering motion state prediction accuracy.
-3. **Logits-level Distillation**: Efficiently optimizes by aligning the logits of teacher and student networks in the semantic space.
-4. **Real-time Forecasting Mechanism**: Continuously updates support frame features with the current frame, ensuring uninterrupted streaming perception during inference.
+## Key Features
 
-The extensive results show that DAMO-StreamNet outperforms existing methods, achieving impressive sAP scores without relying on additional data. This model not only sets a new benchmark for real-time perception but also offers invaluable insights for subsequent research. Moreover, its applications extend beyond cars to other autonomous systems like drones and robots, heralding a new era of real-time perception.
+- **Robust Neck Design**: Incorporates deformable convolution to enhance receptive fields and feature alignment.
 
+- **Dual-Branch Structure**: Fuses semantic and temporal features for accurate motion prediction. 
+
+- **Asymmetric Distillation**: Distills future knowledge from teacher to student network during training for performance gains.
+
+- **Real-time Forecasting**: Continuously updates support frames for seamless streaming.
+
+## Usage
+
+DAMO-StreamNet supports real-time detection of 8 classes relevant to autonomous driving:
+
+- Person, Bicycle, Car, Motorcycle, Bus, Truck, Traffic Light, Stop Sign
+
+See [ModelScope Documentation](https://docs.modelscope.cn/master/model_development/built_in_model/cv/video_object_detection/damo_streamnet.html) for code examples to run inference using our pretrained models.
 
 ## Model Zoo
 
-|Model |size |velocity | sAP<br>0.5:0.95 | sAP50 |sAP75| coco pretrained models | weights |
-| ------        |:---: | :---:       |:---:     |:---:  | :---: | :----: | :----: |
-|[DAMO-StreamNet-S](./cfgs/streamnet_s.py)    |600×960  |1x      |31.8     |52.3 | 31.0 | [link](https://drive.google.com/file/d/1MdxFS7sp45oGc6CMqEnnvtG2ddQzI3s1/view?usp=sharing) | [link](https://drive.google.com/file/d/15Mi8ShE3PiVdEBMzfG2BlVkGFdWPNL19/view?usp=share_link) |
-|[DAMO-StreamNet-M](./cfgs/streamnet_m.py)    |600×960  |1x      |35.5     |57.0 | 36.2 | [link](https://drive.google.com/file/d/1vJIf9CPprdDWrcisg1kCg4vxVBuSZ_kH/view?usp=share_link) | [link](https://drive.google.com/file/d/1P3STvXZPpkzJB6EmsRc0RbSM0T_D0U1Q/view?usp=share_link) |
-|[DAMO-StreamNet-L](./cfgs/streamnet_l.py)    |600×960  |1x      |37.8     |59.1 | 38.6 | [link](https://drive.google.com/file/d/10rWOhrPf68zUJNigRnjaBTitI0OEEPds/view?usp=share_link) | [link](https://drive.google.com/file/d/1V__om759s2vCXy5L8A1oP8qQqPbPms5A/view?usp=share_link) |
-|[DAMO-StreamNet-L](./cfgs/streamnet_l_1200x1920.py)   |1200×1920  |1x      | **43.3** | **66.1** | **44.6** | [link](https://drive.google.com/file/d/10rWOhrPf68zUJNigRnjaBTitI0OEEPds/view?usp=share_link) | [link](https://drive.google.com/file/d/17qRB7xIKkSH6RNCk0OF3XFTQO_WACA04/view?usp=share_link) |
+| Model | Input Size | Velocity | sAP 0.5:0.95 | sAP50 | sAP75 | COCO Weights | Checkpoint |
+| ----- | ---------- | -------- | ------------ | ----- | ----- | ------------ | ---------- |
+| [DAMO-StreamNet-S](cfgs/streamnet_s.py) | 600x960 | 1x | 31.8 | 52.3 | 31.0 | [link](https://drive.google.com/file/d/1MdxFS7sp45oGc6CMqEnnvtG2ddQzI3s1/view?usp=sharing) | [link](https://drive.google.com/file/d/15Mi8ShE3PiVdEBMzfG2BlVkGFdWPNL19/view?usp=share_link) |
+| [DAMO-StreamNet-M](cfgs/streamnet_m.py) | 600x960 | 1x | 35.5 | 57.0 | 36.2 | [link](https://drive.google.com/file/d/1vJIf9CPprdDWrcisg1kCg4vxVBuSZ_kH/view?usp=share_link) | [link](https://drive.google.com/file/d/1P3STvXZPpkzJB6EmsRc0RbSM0T_D0U1Q/view?usp=share_link) |  
+| [DAMO-StreamNet-L](cfgs/streamnet_l.py) | 600x960 | 1x | 37.8 | 59.1 | 38.6 | [link](https://drive.google.com/file/d/10rWOhrPf68zUJNigRnjaBTitI0OEEPds/view?usp=share_link) | [link](https://drive.google.com/file/d/1V__om759s2vCXy5L8A1oP8qQqPbPms5A/view?usp=share_link) |
+| [DAMO-StreamNet-L](cfgs/streamnet_l_1200x1920.py) | 1200x1920 | 1x | **43.3** | **66.1** | **44.6** | [link](https://drive.google.com/file/d/10rWOhrPf68zUJNigRnjaBTitI0OEEPds/view?usp=share_link) | [link](https://drive.google.com/file/d/17qRB7xIKkSH6RNCk0OF3XFTQO_WACA04/view?usp=share_link) |
 
-Please find the teacher model [here](https://drive.google.com/drive/folders/1I0R68LqXt7yoUtJ-i1-uynW6dsKSO49Y?usp=sharing).
+Teacher models available [here](https://drive.google.com/drive/folders/1I0R68LqXt7yoUtJ-i1-uynW6dsKSO49Y?usp=sharing).
+
+## Installation
+
+Follow install guidelines from [StreamYOLO](https://github.com/yancie-yjr/StreamYOLO) and [LongShortNet](https://github.com/LiChenyang-Github/LongShortNet).
 
 ## Quick Start
 
-### Installation
+### Dataset Preparation 
 
-For installation, follow the guidelines provided in [StreamYOLO](https://github.com/yancie-yjr/StreamYOLO) and [LongShortNet](https://github.com/LiChenyang-Github/LongShortNet).
+Follow [Argoverse-HD setup instructions](https://github.com/yancie-yjr/StreamYOLO#quick-start).
 
-#### Dataset Preparation
+### Model Preparation
 
-To set up the Argoverse-HD dataset, follow the instructions [here](https://github.com/yancie-yjr/StreamYOLO#quick-start). Ensure that you place the dataset in `./data` or create symbolic links to the dataset within `./data`.
-
-#### Models Preparation
-
-Download the models from the links above and organize them in the `./models` directory as shown:
-
+Organize downloaded models:
 
 ```
 ./models
 ├── checkpoints
-│   ├── streamnet_l_1200x1920.pth
-│   ├── streamnet_l.pth
-│   ├── streamnet_m.pth
-│   └── streamnet_s.pth
+│   ├── streamnet_l_1200x1920.pth
+│   ├── streamnet_l.pth
+│   ├── streamnet_m.pth
+│   └── streamnet_s.pth
 ├── coco_pretrained_models
-│   ├── yolox_l_drfpn.pth
-│   ├── yolox_m_drfpn.pth
-│   └── yolox_s_drfpn.pth
+│   ├── yolox_l_drfpn.pth
+│   ├── yolox_m_drfpn.pth
+│   └── yolox_s_drfpn.pth  
 └── teacher_models
     └── l_s50_still_dfp_flip_ep8_4_gpus_bs_8
         └── best_ckpt.pth
-
 ```
 
-### Train
+### Training 
 
-To initiate training, execute:
-```shell
+```
 bash run_train.sh
 ```
 
 ### Evaluation
-For model evaluation, run:
 
-```shell
-bash run_eval.sh
+```
+bash run_eval.sh 
 ```
 
+## Training Details
 
-## Acknowledgment
-Our work heavily relies on the foundations laid by [StreamYOLO](https://github.com/yancie-yjr/StreamYOLO) and [LongShortNet](https://github.com/LiChenyang-Github/LongShortNet). We extend our heartfelt gratitude to the authors for their groundbreaking contributions.
+- 8 Epochs on Argoverse-HD
+- SGD Optimizer with Linear LR Schedule
+- Random Flip Augmentation  
+- Multi-Scale Training
 
+## References
 
-## Copyright and Usage Restrictions
+Please cite our paper:
 
-This software and associated documentation files (the "Software") are provided for **academic research purposes only**. Redistribution and use in any form, with or without modification, are prohibited without the express written permission of the copyright holder.
+```
+@article{DAMO_StreamNet,
+  title={DAMO-StreamNet: Optimizing Streaming Perception in Autonomous Driving},
+  author={Jun-Yan He, Zhi-Qi Cheng, Chenyang Li, Wangmeng Xiang, Binghui Chen, Bin Luo, Yifeng Geng, Xuansong Xie},
+  journal={IJCAI},  
+  year={2023}
+}
+```
 
-Any use of the Software should cite the appropriate academic publications. Commercial use or any activities other than academic research are strictly prohibited.
+DAMO-StreamNet builds on [YOLO](https://arxiv.org/abs/2104.10497), [LongShortNet](https://arxiv.org/abs/2203.17084) and [StreamYOLO](https://arxiv.org/abs/2203.11972).
 
-By accessing, downloading, or using the Software, you agree to comply with the above terms.
+## License
 
-
+For academic research only. Please contact authors for commercial licensing.
 
 
 
